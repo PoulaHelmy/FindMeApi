@@ -15,9 +15,9 @@ class Item extends Model
     protected $table='items';
 
 
-    'public function photos(){
+    public function photos(){
         return $this->morphMany('App\Models\Photo', 'photoable');
-    }'
+    }
     public function dynamicValues(){
         return $this->hasMany('App\Models\ItemOption','item_id');
     }
