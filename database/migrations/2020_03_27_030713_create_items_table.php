@@ -23,7 +23,7 @@ class CreateItemsTable extends Migration
             $table->decimal('lat', 10, 8)->nullable();
             $table->decimal('lan', 11, 8)->nullable();
             $table->text('des');
-            $table->integer('is_found',['0','1','-1'])->default('0');
+            $table->integer('is_found')->default(0);
             $table->date('date')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

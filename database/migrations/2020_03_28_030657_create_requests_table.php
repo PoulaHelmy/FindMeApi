@@ -19,7 +19,7 @@ class CreateRequestsTable extends Migration
             $table->unsignedBigInteger('item_id');
             $table->string('name');
             $table->text('des');
-            $table->integer('status',[-1,0,1])->default('0');
+            $table->integer('status')->default('0');
             $table->timestamps();
 
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
