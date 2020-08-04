@@ -16,9 +16,11 @@ use Avatar;
 
 class Passport extends ApiHome
 {
-    public function __construct(User $model){
+    public function __construct(User $model)
+    {
         parent::__construct($model);
     }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -38,6 +40,7 @@ class Passport extends ApiHome
         return $this->sendResponse($success, 'Success Login Operation');
 
     }//end of login
+
     public function signup(Request $request)
     {
         $v = validator($request->only('email', 'name', 'password', 'phone'), [
@@ -46,7 +49,6 @@ class Passport extends ApiHome
             'password' => 'required|string|min:6',
             'phone' => 'required|string|min:10|max:15|unique:users,phone',
         ]);
-
         if ($v->fails())
             return $this->sendError('Validation Error.!', $v->errors()->all(), 400);
         $user = User::create([
@@ -63,10 +65,12 @@ class Passport extends ApiHome
         $success['name'] = $user->name;
         return $this->sendResponse($success, 'Successfully created user!');
     }//end of register
+
     public function details()
     {
         return new UserDetailsResource(auth()->user());
     }//end of details
+
     public function update(Request $request)
     {
         $v = validator($request->all(), [
@@ -107,28 +111,43 @@ class Passport extends ApiHome
         $user = auth()->user()->update($requestArray);
         return $this->sendResponse(new UserDetailsResource(auth()->user()), 'Successfully created user!');
     }//end of Update
+
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
         $request->user()->token()->delete();
         return $this->sendResponse(null, 'Successfully Loged OUT user!');
     }//end of logout
+
     public function SignupActivate($token)
     {
         $user = User::where('activation_token', $token)->first();
-
         if (!$user)
             return $this->sendError('This activation token is invalid.!', 404);
-
         $user->active = true;
         $user->activation_token = '';
         $user->save();
         return $user;
-    }//end of signupActivate
-    public function UserData($id){
+    }//end of signup Activate
+
+    public function SignupActivate2(Request $request)
+    {
+        $user = User::where('id', $request->id)->first();
+        if (!$user)
+            return $this->sendError('This USer Not Found.!', 404);
+        $user->active = true;
+        $user->activation_token = '';
+        $user->save();
+        return $this->sendResponse(null, 'Successfully Activate This User!');
+    }//end of signup Activate
+
+    public function UserData($id)
+    {
         return new UserDetailsResource(User::find($id));
     }//end of UserData
-    public function  updatePassword(Request $request){
+
+    public function updatePassword(Request $request)
+    {
         $v = validator($request->all(), [
             'old_password' => 'string|min:6',
             'new_password' => 'string|min:6',
@@ -138,7 +157,7 @@ class Passport extends ApiHome
             return $this->sendError('Validation Error.!', $v->errors()->all(), 400);
         if (!auth()->user())
             return $this->sendError('Unauthorized', 400);
-        if (Hash::check($request->old_password,auth()->user()->getAuthPassword())){
+        if (Hash::check($request->old_password, auth()->user()->getAuthPassword())) {
             auth()->user()->password = Hash::make($request->new_password);
             auth()->user()->save();
             return $this->sendResponse('', 'PassWord Updated Successfully');

@@ -12,7 +12,7 @@ Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider'
 Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
 
 /* For Password reset operations*/
-Route::group([ 'middleware' => 'api', 'prefix' => 'password'], function () {
+Route::group(['middleware' => 'api', 'prefix' => 'password'], function () {
     Route::post('create', 'API\PasswordResetController@create');
     Route::get('find/{token}', 'API\PasswordResetController@find');
     Route::post('reset', 'API\PasswordResetController@reset');
@@ -24,7 +24,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('signup', 'API\Passport@signup');
     Route::get('signup/activate/{token}', 'API\Passport@signupActivate');
 
-    Route::group(['middleware' => 'auth:api'], function() {
+    Route::group(['middleware' => 'auth:api'], function () {
 
 
         /*************************** Passport USer Routes **************************/
@@ -37,9 +37,9 @@ Route::group(['prefix' => 'auth'], function () {
         /*********************************** -- ***************************************/
 
         /*************************** Items Routes **************************/
-        Route::resource('items','API\Items');
+        Route::resource('items', 'API\Items');
         Route::post('getitembyname', 'API\Items@getItemByName');
-        Route::resource('items/values','API\ItemValues');
+        Route::resource('items/values', 'API\ItemValues');
         Route::get('items/markasreturned/{id}', 'API\Items@markAsReturned');
 
         /*********************************** -- ***************************************/
@@ -52,13 +52,11 @@ Route::group(['prefix' => 'auth'], function () {
         /*********************************** -- ***************************************/
 
 
-
         /*************************** Requests Routes **************************/
         Route::resource('requests', 'API\ItemsRequests');
         Route::post('requests/change/status', 'API\ItemsRequests@changeStatus');
         Route::post('requests/incoming', 'API\ItemsRequests@incoming_requests');
         /*********************************** -- ***************************************/
-
 
 
         /*************************** Notifications Routes **************************/
@@ -73,15 +71,13 @@ Route::group(['prefix' => 'auth'], function () {
 
 
         /*********************************** Matching Items ***************************************/
-        Route::get('matching/items','Api\MatchingItems@main');
+        Route::get('matching/items', 'Api\MatchingItems@main');
         /*********************************** -- ***************************************/
 
         /*************************** Persons  Routes **************************/
-        Route::post('persons/faces','API\Items@uploadPersonFaces');
+        Route::post('persons/faces', 'API\Items@uploadPersonFaces');
 
         /*********************************** -- ***************************************/
-
-
 
 
         // Route::get('items/upoptions/{id}','API\Items@getAllItemOptions');
@@ -90,54 +86,56 @@ Route::group(['prefix' => 'auth'], function () {
     });
 });
 
-    /* --------------------------------------------------------------------------------- */
-    /* Get All Inputs Id's Realted to a subcat */
-    Route::get('subcatsinputs/{id}','API\Admin\SubCategoryAPI@all_subcatsids');
+/* --------------------------------------------------------------------------------- */
+/* Get All Inputs Id's Realted to a subcat */
+Route::get('subcatsinputs/{id}', 'API\Admin\SubCategoryAPI@all_subcatsids');
 
-    /* Cruds  Routes */
-    Route::resource('categories','API\Admin\CategoryApi');
-    Route::resource('subcategories','API\Admin\SubCategoryAPI');
-    Route::resource('inputs','API\Admin\InputsAPI');
-    Route::resource('tags','API\Admin\TagsAPI');
+/* Cruds  Routes */
+Route::resource('categories', 'API\Admin\CategoryApi');
+Route::resource('subcategories', 'API\Admin\SubCategoryAPI');
+Route::resource('inputs', 'API\Admin\InputsAPI');
+Route::resource('tags', 'API\Admin\TagsAPI');
 
-    /* Filters Routes */
-    Route::get('filter/categories','API\Admin\CategoryApi@indexWithFilter');
-    Route::get('filter/tags','API\Admin\TagsAPI@indexWithFilter');
-    Route::get('filter/inputs','API\Admin\InputsAPI@indexWithFilter');
-    Route::get('filter/subcategories','API\Admin\SubCategoryAPI@indexWithFilter');
-    Route::get('filter/items','API\Items@indexWithFilter');
-    Route::get('filter/requests','API\ItemsRequests@indexWithFilter');
-    Route::get('filter/users','API\Users@indexWithFilter');
+/* Filters Routes */
+Route::get('filter/categories', 'API\Admin\CategoryApi@indexWithFilter');
+Route::get('filter/tags', 'API\Admin\TagsAPI@indexWithFilter');
+Route::get('filter/inputs', 'API\Admin\InputsAPI@indexWithFilter');
+Route::get('filter/subcategories', 'API\Admin\SubCategoryAPI@indexWithFilter');
+Route::get('filter/items', 'API\Items@indexWithFilter');
+Route::get('filter/requests', 'API\ItemsRequests@indexWithFilter');
+Route::get('filter/users', 'API\Users@indexWithFilter');
 
-    /* Get All Inputs Id's Realted to a subcat && get ALL Inputs Values For this Item */
-    Route::post('subcatalldata','API\Admin\SubCategoryAPI@all_items_subcats_data');
+/* Get All Inputs Id's Realted to a subcat && get ALL Inputs Values For this Item */
+Route::post('subcatalldata', 'API\Admin\SubCategoryAPI@all_items_subcats_data');
 
-    /* Get All subCAts  Realted to a cat */
-    Route::get('catsubcats/{id}','API\Admin\CategoryApi@all_subCatsData');
+/* Get All subCAts  Realted to a cat */
+Route::get('catsubcats/{id}', 'API\Admin\CategoryApi@all_subCatsData');
 
-    /* Relations ships  Routes */
-    Route::post('subcategories/inputs','API\Admin\SubCategoryAPI@subcats_inputs');
+/* Relations ships  Routes */
+Route::post('subcategories/inputs', 'API\Admin\SubCategoryAPI@subcats_inputs');
 
-    /* Matching Items */
-    Route::get('matching','API\Items@matching');
-    Route::get('matching2','API\Admin\AdminItems@matching');
+/* Matching Items */
+Route::get('matching', 'API\Items@matching');
+Route::get('matching2', 'API\Admin\AdminItems@matching');
 
-    /* Algolia search Items */
-    Route::get('testpola/{q}','API\ItemsFilters@myFilter');
+/* Algolia search Items */
+Route::get('testpola/{q}', 'API\ItemsFilters@myFilter');
 
-    /* --------------------------------------------------------------------------------- */
-    /* ---------------------------------Admin Routes--------------------------------------- */
+/* --------------------------------------------------------------------------------- */
+/* ---------------------------------Admin Routes--------------------------------------- */
 
-    Route::get('allusers','API\Users@getAllUsers');
-    Route::get('lastusers','API\Users@getLastUsers');
-    Route::get('allitems','API\Admin\AdminItems@allItems');
-    Route::get('lastitems','API\Admin\AdminItems@lastItems');
-    Route::get('lastpersons','API\Admin\AdminItems@lastPersons');
-    Route::get('summerydata','API\Admin\ChartsController@summeryData');
-    Route::get('allrequests','API\Admin\AdminRequests@allrequests');
-    Route::get('allresults','API\Admin\ChartsController@allResults');
-    Route::get('allsummery','API\Admin\ChartsController@allResultsSummery');
-
+Route::get('allusers', 'API\Users@getAllUsers');
+Route::get('lastusers', 'API\Users@getLastUsers');
+Route::get('allitems', 'API\Admin\AdminItems@allItems');
+Route::get('lastitems', 'API\Admin\AdminItems@lastItems');
+Route::get('lastpersons', 'API\Admin\AdminItems@lastPersons');
+Route::get('summerydata', 'API\Admin\ChartsController@summeryData');
+Route::get('allrequests', 'API\Admin\AdminRequests@allrequests');
+Route::get('allresults', 'API\Admin\ChartsController@allResults');
+Route::get('allsummery', 'API\Admin\ChartsController@allResultsSummery');
+Route::post('activateuser', 'API\Passport@signupActivate2');
+Route::get('getitem/{id}', 'API\Admin\AdminItems@getitem');
+Route::get('getreq/{id}', 'API\Admin\AdminRequests@getrequest');
 
 
 
@@ -156,9 +154,7 @@ Route::group(['prefix' => 'auth'], function () {
 /* --------------------------------------------------------------------------------- */
 
 
-
 // Route::get('pola', 'API\Users@getAllUsers');
-
 
 
 // Route::get('filter/items','API\Items@indexWithFilter');
@@ -171,18 +167,7 @@ Route::group(['prefix' => 'auth'], function () {
 // });
 
 
-
-
-
-
-
-
-
-
-
 //Route::resource('requests','API\ItemsRequests');
-
-
 
 
 //Route::get('pola',function (){
@@ -198,12 +183,6 @@ Route::group(['prefix' => 'auth'], function () {
 ////        inputOption::destroy($option->id);
 ////    }
 //});
-
-
-
-
-
-
 
 
 //Route::post('items/images','API\ImagesController@uploadImages');

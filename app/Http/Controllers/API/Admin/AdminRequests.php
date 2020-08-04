@@ -18,5 +18,13 @@ class AdminRequests extends ApiHome
         return $this->sendResponse(ItemRequestDetails::collection(RequestItems::all()),
             'all Requests ');
     }
+    public function getrequest($id){
+            $row=$this->model->findOrFail($id);
+            if($row) {
+                return $this->sendResponse(new ItemRequestDetails($row),
+                    'Data Retrieved Successfully');
+            }
+            return $this->sendError('Not Found',400);
+        }
 
 }

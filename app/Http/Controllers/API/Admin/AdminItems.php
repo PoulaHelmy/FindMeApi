@@ -66,6 +66,14 @@ class AdminItems extends ApiHome
         return $this->sendResponse(ItemsDetailsResource::collection(Item::all()),
             'all Items ');
     }
+   public function getitem($id){
+          $row=$this->model->findOrFail($id);
+          if($row) {
+              return $this->sendResponse(new ItemsDetailsResource($row),
+                  'Data Retrieved Successfully');
+          }
+          return $this->sendError('Not Found',400);
+      }
     public function lastItems(){
         return $this->sendResponse(ItemsDetailsResource::
         collection(Item::where('category_id','!=','11')->orderBy('id', 'desc')->take(10)->get()),
