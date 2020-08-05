@@ -16,17 +16,12 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/passport": "^8.4",
-        "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravolt/avatar": "^3.2",
         "nesbot/carbon": "^2.32",
         "pusher/pusher-php-server": "^4.1",
-        "sentry/sentry-laravel": "1.7.1",
-        "socialiteproviders/facebook": "^1.0",
-        "socialiteproviders/google": "^3.0",
-        "socialiteproviders/linkedin": "^3.1",
-        "socialiteproviders/twitter": "^3.0"
+        "sentry/sentry-laravel": "1.7.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
