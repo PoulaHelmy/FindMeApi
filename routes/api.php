@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\inputOption;
-use App\Models\inputValidator;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -136,6 +133,7 @@ Route::get('allsummery', 'API\Admin\ChartsController@allResultsSummery');
 Route::post('activateuser', 'API\Passport@signupActivate2');
 Route::get('getitem/{id}', 'API\Admin\AdminItems@getitem');
 Route::get('getreq/{id}', 'API\Admin\AdminRequests@getrequest');
+Route::get('getuser/{id}', 'API\Users@adminGetUserData');
 
 
 
