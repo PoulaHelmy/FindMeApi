@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\SubCategories;
 
-use App\Models\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Subcat;
 
 class SubCategoryLiteResource extends JsonResource
 {
@@ -12,11 +10,10 @@ class SubCategoryLiteResource extends JsonResource
     public function toArray($request)
     {
 
-       
-    
+
         return [
-            'id'                 =>$this->id,
-            'name'               =>$this->name,
+            'id' => $this->id,
+            'name' => $this->name,
 
 
         ];

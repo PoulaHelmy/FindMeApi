@@ -11,18 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call([
+        $this->call([
 
-            // Users::class,
-          //  Items::class,
-            Categoris::class,
-           SubCategoris::class,
-            Inputs::class,
-         Tags::class
-
-
+//            Users::class,
+            //  Items::class,
+            //  Categoris::class,
+            //  SubCategoris::class,
+            //  Inputs::class,
+            //  Tags::class
 
 
-         ]);
+        ]);
     }
 }
