@@ -24,8 +24,8 @@ class UserAdminDetails extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
-            'items' => sizeof($items) > 0 ? $items : 'Items Not Founds',
-            'requests' => sizeof($requests) > 0 ? $requests : 'Requests Not Founds',
+            'items' => sizeof($items) > 0 ? $items : ['Items Not Founds'],
+            'requests' => sizeof($requests) > 0 ? $requests : ['Requests Not Founds'],
         ];
     }
 }

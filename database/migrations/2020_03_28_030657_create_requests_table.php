@@ -21,9 +21,7 @@ class CreateRequestsTable extends Migration
             $table->text('des');
             $table->integer('status')->default('0');
             $table->timestamps();
-
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });

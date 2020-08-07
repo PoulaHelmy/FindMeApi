@@ -63,9 +63,8 @@ class Item extends Model
      */
     public function toSearchableArray()
     {
-
-
-        return ['id' => $this->id,
+        return [
+            'id' => $this->id,
             'name' => $this->name,
             'is_found' => $this->is_found
         ];

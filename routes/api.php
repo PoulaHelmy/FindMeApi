@@ -66,20 +66,14 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('chat/sendmsg', 'API\ChatController@storeMsg');
         Route::post('chat/allmsgs', 'API\ChatController@getAllMsgs');
 
-
         /*********************************** Matching Items ***************************************/
         Route::get('matching/items', 'Api\MatchingItems@main');
         /*********************************** -- ***************************************/
 
         /*************************** Persons  Routes **************************/
         Route::post('persons/faces', 'API\Items@uploadPersonFaces');
-
         /*********************************** -- ***************************************/
-
-
         // Route::get('items/upoptions/{id}','API\Items@getAllItemOptions');
-
-
     });
 });
 

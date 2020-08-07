@@ -28,7 +28,7 @@ class Items extends ApiHome
     {
         return ItemsResource::collection(
             Item::where('user_id', auth()->user()->id)->get());
-    }//endof index
+    }//end of index
 
     public function show($id)
     {
@@ -75,7 +75,6 @@ class Items extends ApiHome
         $row->update($requestArray);
         if ($request->has('images')) {
             foreach ($row->photos as $photo) {
-
                 Storage::disk('public')->delete($photo->src);
                 $photo = \App\Models\Photo::find($photo->id);
                 $photo->delete();
@@ -145,7 +144,6 @@ class Items extends ApiHome
             $optionData->delete();
         }
         foreach ($row->photos as $photo) {
-
             Storage::disk('public')->delete($photo->src);
             $photo = \App\Models\Photo::find($photo->id);
             $photo->delete();
@@ -187,6 +185,7 @@ class Items extends ApiHome
     }
 
     /* -------------- Matching Functions ----------------- */
+
     public function Get_All_Matching_Items()
     {
         $cats = Category::all();
@@ -214,6 +213,7 @@ class Items extends ApiHome
     public function matching()
     {
         $items = $this->Get_All_Matching_Items();
+//        return response()->json($items, 200);
         Matching::truncate();
         $ids = [];
         DB::table('notifications')->where('type', 'App\Notifications\MatchingItems')->delete();

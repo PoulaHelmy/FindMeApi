@@ -19,8 +19,6 @@ class CreateItemvaluesTable extends Migration
             $table->string('name');
             $table->string('value');
             $table->timestamps();
-
-
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
 
         });
