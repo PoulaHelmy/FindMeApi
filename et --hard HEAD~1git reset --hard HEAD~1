@@ -1,0 +1,59 @@
+[33mcommit e874e4d64191e292c68da9f6bdbbd708631bf38c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: = <=>
+Date:   Sun Aug 9 14:51:38 2020 +0200
+
+    Remove Socialite pkg And Adding generate Docs
+
+[33mcommit 02968ef80beb54c0d69b58f82791edc37b1d745e[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: = <=>
+Date:   Fri Aug 7 13:58:29 2020 +0200
+
+    update some files
+
+[33mcommit 322a715ca149df16dd39cd2af7fc8bb234f57232[m
+Author: = <=>
+Date:   Wed Aug 5 21:12:42 2020 +0200
+
+    REMOVE LARAVEL SOCIALITE
+
+[33mcommit dacf07f8b6d3f98e2b776be36f41254d6f3ab9a5[m
+Author: = <=>
+Date:   Wed Aug 5 21:05:45 2020 +0200
+
+    Enhance IN API RESOURES
+
+[33mcommit e47ad2e5a4a4f4d6ab5b5ed0e65c2e1eb5d75534[m
+Author: = <=>
+Date:   Wed Aug 5 20:40:36 2020 +0200
+
+    Create USer DAta In Admin Operations
+
+[33mcommit 8c56f74ebaf93e501c78d289cb51135a11ba7ae9[m
+Author: = <=>
+Date:   Wed Aug 5 01:56:07 2020 +0200
+
+    Solve Issues
+
+[33mcommit fe4ac7386d089fd6fff9568b430964b42ca629f7[m
+Author: = <=>
+Date:   Sat Aug 1 05:17:00 2020 +0200
+
+    update
+
+[33mcommit 8edb67fa4dd626eb9e765cb0e7baebb5d62b665a[m
+Author: = <=>
+Date:   Sat Aug 1 05:03:27 2020 +0200
+
+    solve issues in migrations
+
+[33mcommit 9c8c24d849df795c2267e6952c811d390e47956e[m
+Author: = <=>
+Date:   Sat Aug 1 00:35:40 2020 +0200
+
+    Add DEPLOY FILES
+
+[33mcommit d463c8bf928bea36ec11bf57442e205455072b48[m
+Author: = <=>
+Date:   Thu Jul 30 21:13:30 2020 +0200
+
+    upload All Files
