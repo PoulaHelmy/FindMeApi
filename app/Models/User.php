@@ -30,10 +30,6 @@ class User extends Authenticatable
         return Storage::disk('public')->get('avatars/' . $this->id . '/' . $this->avatar);
     }
 
-    public function accounts()
-    {
-        return $this->hasMany(SocialAccount::class);
-    }
 
     public function items()
     {

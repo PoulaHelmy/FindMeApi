@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravolt/avatar": "^3.2",
+        "mpociot/laravel-apidoc-generator": "^4.8",
         "nesbot/carbon": "^2.32",
         "pusher/pusher-php-server": "^4.1",
         "sentry/sentry-laravel": "1.7.1"

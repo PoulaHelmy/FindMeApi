@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/*Social Login Routes*/
-Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider');
-Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
 
 /* For Password reset operations*/
 Route::group(['middleware' => 'api', 'prefix' => 'password'], function () {
@@ -85,11 +82,9 @@ Route::get('subcatsinputs/{id}', 'API\Admin\SubCategoryAPI@all_subcatsids');
 Route::resource('categories', 'API\Admin\CategoryApi');
 Route::resource('subcategories', 'API\Admin\SubCategoryAPI');
 Route::resource('inputs', 'API\Admin\InputsAPI');
-Route::resource('tags', 'API\Admin\TagsAPI');
 
 /* Filters Routes */
 Route::get('filter/categories', 'API\Admin\CategoryApi@indexWithFilter');
-Route::get('filter/tags', 'API\Admin\TagsAPI@indexWithFilter');
 Route::get('filter/inputs', 'API\Admin\InputsAPI@indexWithFilter');
 Route::get('filter/subcategories', 'API\Admin\SubCategoryAPI@indexWithFilter');
 Route::get('filter/items', 'API\Items@indexWithFilter');
@@ -107,7 +102,7 @@ Route::post('subcategories/inputs', 'API\Admin\SubCategoryAPI@subcats_inputs');
 
 /* Matching Items */
 Route::get('matching', 'API\Items@matching');
-Route::get('matching2', 'API\Admin\AdminItems@matching');
+//Route::get('matching2', 'API\Admin\AdminItems@matching');
 
 /* Algolia search Items */
 Route::get('testpola/{q}', 'API\ItemsFilters@myFilter');

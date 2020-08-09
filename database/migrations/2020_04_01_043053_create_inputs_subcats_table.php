@@ -15,8 +15,11 @@ class CreateInputsSubcatsTable extends Migration
     {
         Schema::create('inputs_subcats', function (Blueprint $table) {
             $table->id();
-            $table->integer('input_id')->unsigned();
-            $table->integer('subcat_id')->unsigned();
+            $table->unsignedBigInteger('inputs_id')->unsigned();
+            $table->unsignedBigInteger('subcats_id')->unsigned();
+            $table->foreign('inputs_id')->references('id')->on('inputs')->onDelete('cascade');
+            $table->foreign('subcats_id')->references('id')->on('subcats')->onDelete('cascade');
+
         });
     }
 
