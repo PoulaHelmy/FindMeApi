@@ -6,14 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name','meta_keywords','meta_des'];
-    protected $hidden=['updated_at'];
 
+    protected $fillable = ['name', 'meta_keywords', 'meta_des'];
+    protected $hidden = ['updated_at'];
 
-    public function subcat(){
+    public function subcat()
+    {
         return $this->hasMany(Subcat::class);
     }
-    public function items(){
+
+    public function items()
+    {
         return $this->hasMany(Item::class);
     }
 }
