@@ -37,7 +37,7 @@ class SendMessage extends Notification
     public function toMail($notifiable)
     {
 
-        $urls = url('http://localhost:4200/dashboard/chats/' . $this->CHID);
+        $urls = url('https://findme-ui.netlify.app/dashboard/chats/' . $this->CHID);
         return (new MailMessage)
             ->subject(' Your Have New Message')
             ->line('Hi ' . $this->name . ' Your Have New Message')

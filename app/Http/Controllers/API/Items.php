@@ -143,6 +143,15 @@ class Items extends ApiHome
         return $this->sendResponse($row->is_found, 'ITEM Arcivied Successfully');
     }//end of markAsReturned
 
+    public function uploadPersonFaces(Request $request)
+    {
+        if (sizeof($request->get('images')) > 0) {
+            $fileName = $this->uploadImages($request, $request->item_id);
+        }
+        return $this->sendResponse('',
+            'Person Faces Uploaded Successfully');
+    }//end of uploadPersonFaces
+
     /* -------------- Matching Functions ----------------- */
     public function Get_All_Matching_Items()
     {

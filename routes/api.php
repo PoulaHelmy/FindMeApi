@@ -56,6 +56,10 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('chat/sendmsg', 'API\ChatController@storeMsg');
         Route::post('chat/allmsgs', 'API\ChatController@getAllMsgs');
 
+        /*************************** Persons  Routes **************************/
+        Route::post('persons/faces', 'API\Items@uploadPersonFaces');
+        /*********************************** -- ***************************************/
+        
         /*********************************** Matching Items ***************************************/
         Route::get('matching/items', 'Api\MatchingItems@main');
         /*********************************** -- ***************************************/
