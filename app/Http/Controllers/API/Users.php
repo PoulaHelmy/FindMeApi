@@ -39,20 +39,4 @@ class Users extends ApiHome
         return $this->sendResponse(new UserAdminDetails($data), 'Success Get This User');
     }
 
-    public function indexWithFilter(Request $request)
-    {
-        if ($request->get('filter') == '' || $request->get('filter') == null) {
-            return
-                DB::table('users')->orderBy($request->get('order'), $request->get('sort'))->
-                paginate($request->get('pageSize'));
-        } else {
-            return
-                DB::table('users')->when($request->filter, function ($query) use ($request) {
-                    return $query->where('name', 'like', '%' . $request->filter . '%');
-                })
-                    ->orderBy($request->get('order'), $request->get('sort'))
-                    ->paginate($request->get('pageSize'));
-        }
-    }//endof index
-
-}
+}//End Of Class

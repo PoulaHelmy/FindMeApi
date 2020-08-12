@@ -35,7 +35,7 @@ class InputsAPI extends ApiHome
                 'Data Retrieved Successfully');
         }
         return $this->sendError('Not Found', 400);
-    }
+    }//end of show
 
     public function indexWithFilter(Request $request)
     {
@@ -65,7 +65,6 @@ class InputsAPI extends ApiHome
         $row = Input::create($inputsData);
         $inputsOtpions = $request->get('inputOptions');
         if (isset($inputsOtpions) && sizeof($inputsOtpions) > 0) {
-
             for ($i = 0; $i < sizeof($inputsOtpions); $i++) {
                 $option = [
                     'input_id' => $row->id,
@@ -88,7 +87,6 @@ class InputsAPI extends ApiHome
         }
         return $this->sendResponse(new InputsResource($row), 'Created Successfully');
     }//end of store
-
 
     public function update(Update $request, $id)
     {
@@ -127,7 +125,6 @@ class InputsAPI extends ApiHome
         }
         $inputsValidators = $request->get('inputsValidators');
         if (isset($inputsValidators) && sizeof($inputsValidators) > 0) {
-
             for ($i = 0; $i < sizeof($inputsValidators); $i++) {
                 $validator = [
                     'input_id' => $row->id,
@@ -135,10 +132,9 @@ class InputsAPI extends ApiHome
                     'validatorMessage' => $inputsValidators[$i]['validatorMessage'],
                     'validatorOptions' => $inputsValidators[$i]['validatorOptions'],
                 ];
-
                 $validator = inputValidator::create($validator);
             }
         }
         return $this->sendResponse('', 'Input Updated Successfully');
     }//end of update
-}
+}//end of Class

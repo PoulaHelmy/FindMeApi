@@ -4,15 +4,13 @@ namespace App\Http\Controllers\API;
 
 
 use App\Http\Resources\Users\UserDetailsResource;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use App\Notifications\SignupActivate;
-use Illuminate\Support\Facades\Storage;
-
 use Avatar;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Passport extends ApiHome
 {
@@ -28,7 +26,6 @@ class Passport extends ApiHome
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);
-
         $credentials = request(['email', 'password']);
         $credentials['active'] = 1;
         $credentials['deleted_at'] = null;
@@ -38,7 +35,6 @@ class Passport extends ApiHome
         $success['token'] = $user->createToken('Personal Access Token')->accessToken;
         $success['name'] = $user->name;
         return $this->sendResponse($success, 'Success Login Operation');
-
     }//end of login
 
     public function signup(Request $request)
@@ -93,9 +89,6 @@ class Passport extends ApiHome
         if ($request['photo']) {
             if ($requestArray['photo'] != '' && $requestArray['photo'] != null) {
                 Storage::disk('public')->delete('avatars/' . auth()->user()->id . '/' . auth()->user()->avatar);
-                $img = preg_replace('/^data:image\/\w+;base64,/', '', $requestArray['photo']);
-                $type = explode(';', $requestArray['photo'])[0];
-                $type = explode('/', $requestArray['photo'])[1]; // png or jpg etc
                 $image_64 = $requestArray['photo']; //your base64 encoded data
                 $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];   // .jpg .png .pdf
                 $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
@@ -130,6 +123,7 @@ class Passport extends ApiHome
         return $user;
     }//end of signup Activate
 
+    // LET Admin To Activate The User
     public function SignupActivate2(Request $request)
     {
         $user = User::where('id', $request->id)->first();

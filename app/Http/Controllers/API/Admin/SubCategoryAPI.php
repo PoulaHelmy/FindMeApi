@@ -35,7 +35,7 @@ class SubCategoryAPI extends ApiHome
                 'Data Retrieved Successfully');
         }
         return $this->sendError('Not Found', 400);
-    }
+    }//end of show
 
     public function indexWithFilter(Request $request)
     {
@@ -74,18 +74,16 @@ class SubCategoryAPI extends ApiHome
             'subcat' => 'required|integer',
             'inputs.*.*.id' => 'required|integer',
         ]);
-
         if ($v->fails())
             return $this->sendError('Validation Error.!', $v->errors()->all(), 400);
-
         $row = $this->model->find($request->subcat);
         if (!$row)
             return $this->sendError('This SubCategory Not Found', 400);
         $row->inputs()->sync($request->inputs);
         return $this->sendResponse(new SubCategoryResource($row), 'Attachment the inputs to this subcategory is Successfully');
-
     }//end of update
 
+    /* Get All Inputs Id's Realted to a subcat */
     public function all_subcatsids($id)
     {
         $AllInputs = [];
@@ -97,8 +95,13 @@ class SubCategoryAPI extends ApiHome
             array_push($AllInputs, [new InputsFullDetailsResource($input)]);
         }
         return $this->sendResponse($AllInputs, 'All Inputs Data Reteived Successfully');
-    }
+    }//end of all_subcatsids
 
+    /*
+        Get All Inputs Id's Related to a subcat &&
+        get ALL Inputs Values For this Item
+        Used In Second update form in items
+    */
     public function all_items_subcats_data(Request $request)
     {
         $v = validator($request->only('subcat_id', 'item_id'), [
@@ -125,7 +128,7 @@ class SubCategoryAPI extends ApiHome
         $data = [$Alloptions, $AllInputs];
         return $this->sendResponse($data,
             'Data Retrivred Successfully');
-    }
+    }//end of Function
 
 }//end of class
 

@@ -50,12 +50,10 @@ class Item extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-
     public function searchableAs()
     {
         return 'items_index';
     }
-
 
     public function toSearchableArray()
     {
@@ -64,13 +62,6 @@ class Item extends Model
             'name' => $this->name,
             'is_found' => $this->is_found
         ];
-    }
-
-    public static function getByDistance($lat, $lng, $distance)
-    {
-        $results = DB::select(
-            DB::raw('SELECT id, ( 3959 * acos( cos( radians(' . $lat . ') ) * cos( radians( lat ) ) * cos( radians( lan ) - radians(' . $lng . ') ) + sin( radians(' . $lat . ') ) * sin( radians(lat) ) ) ) AS distance FROM items HAVING distance < ' . $distance . ' ORDER BY distance'));
-        return $results;
     }
 
     public static function getByDistance2($lat, $lng, $distance, $subcat, $user_id, $status)

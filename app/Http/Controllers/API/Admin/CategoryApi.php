@@ -9,7 +9,6 @@ use App\Http\Requests\BackEnd\Categories\Store;
 use App\Http\Resources\Categories\CategoryFullDetaillResouce;
 use App\Http\Resources\Categories\CategoryResource;
 use App\Models\Category;
-use App\Models\Subcat;
 use Illuminate\Http\Request;
 
 
@@ -24,20 +23,17 @@ class CategoryApi extends ApiHome
     {
         return CategoryResource::collection(
             Category::all());
-    }//endof index
+    }//end of index
 
     public function show($id)
     {
-
         $row = $this->model->findOrFail($id);
         if ($row) {
-//            dd($row);
             return $this->sendResponse(new CategoryFullDetaillResouce($row),
                 'Data Retrieved Successfully');
         }
         return $this->sendError('Not Found', 400);
-    }
-
+    }//end of show
 
     public function indexWithFilter(Request $request)
     {
@@ -61,7 +57,6 @@ class CategoryApi extends ApiHome
         return $this->sendResponse(new CategoryResource($row), 'Created Successfully');
     }//end of store
 
-
     public function update(Store $request, $id)
     {
         $row = $this->model->find($id);
@@ -78,12 +73,9 @@ class CategoryApi extends ApiHome
         if (!$row)
             return $this->sendError('This Category Not Found', 400);
         foreach ($row->subcat as $subCat) {
-            $subCatData = Subcat::find($subCat->id);
-            array_push($AllSubCats, $subCatData);
+            array_push($AllSubCats, $subCat);
         }
         return $this->sendResponse($AllSubCats, 'All Inputs Data Reteived Successfully');
-
-    }
-
+    }//end of all_subCatsData
 
 }//end of controller

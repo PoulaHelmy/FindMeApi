@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 /* For Password reset operations*/
 Route::group(['middleware' => 'api', 'prefix' => 'password'], function () {
     Route::post('create', 'API\PasswordResetController@create');
@@ -17,9 +16,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'API\Passport@login');
     Route::post('signup', 'API\Passport@signup');
     Route::get('signup/activate/{token}', 'API\Passport@signupActivate');
-
     Route::group(['middleware' => 'auth:api'], function () {
-
 
         /*************************** Passport USer Routes **************************/
         Route::get('user', 'API\Passport@details');
@@ -27,7 +24,6 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', 'API\Passport@logout');
         Route::post('update', 'API\Passport@update');
         Route::get('userdata/{id}', 'API\Passport@UserData');
-
         /*********************************** -- ***************************************/
 
         /*************************** Items Routes **************************/
@@ -35,16 +31,13 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('getitembyname', 'API\Items@getItemByName');
         Route::resource('items/values', 'API\ItemValues');
         Route::get('items/markasreturned/{id}', 'API\Items@markAsReturned');
-
         /*********************************** -- ***************************************/
-
 
         /*************************** Questions Routes **************************/
         Route::post('items/questions', 'API\Questions@store');
         Route::put('items/questions/{id}', 'API\Questions@update');
         Route::get('items/questions/{id}', 'API\Questions@show');
         /*********************************** -- ***************************************/
-
 
         /*************************** Requests Routes **************************/
         Route::resource('requests', 'API\ItemsRequests');
@@ -66,19 +59,14 @@ Route::group(['prefix' => 'auth'], function () {
         /*********************************** Matching Items ***************************************/
         Route::get('matching/items', 'Api\MatchingItems@main');
         /*********************************** -- ***************************************/
-
-        /*************************** Persons  Routes **************************/
-        Route::post('persons/faces', 'API\Items@uploadPersonFaces');
-        /*********************************** -- ***************************************/
-        // Route::get('items/upoptions/{id}','API\Items@getAllItemOptions');
     });
 });
 
 /* --------------------------------------------------------------------------------- */
-/* Get All Inputs Id's Realted to a subcat */
+/* Get All Inputs Id's Related to a subcat */
 Route::get('subcatsinputs/{id}', 'API\Admin\SubCategoryAPI@all_subcatsids');
 
-/* Cruds  Routes */
+/* Crud  Routes */
 Route::resource('categories', 'API\Admin\CategoryApi');
 Route::resource('subcategories', 'API\Admin\SubCategoryAPI');
 Route::resource('inputs', 'API\Admin\InputsAPI');
@@ -126,50 +114,3 @@ Route::get('getuser/{id}', 'API\Users@adminGetUserData');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* --------------------------------------------------------------------------------- */
-
-
-// Route::get('pola', 'API\Users@getAllUsers');
-
-
-// Route::get('filter/items','API\Items@indexWithFilter');
-
-// Route::get('email', 'API\EmailController@sendEmail');
-
-
-// Route::get('/debug-sentry', function () {
-//     throw new Exception('My first Sentry error!');
-// });
-
-
-//Route::resource('requests','API\ItemsRequests');
-
-
-//Route::get('pola',function (){
-//    $row=App\Models\Input::find(47);
-//
-//    if(!$row)
-//        dd('No Row');
-//    foreach($row->optionsValidators as $valid){
-//        $xx=inputValidator::find($valid->id);
-//        echo '<br>'.$valid->id.' : '.$xx->delete().'<br>';
-//    }
-////    foreach($row->optionsInputs() as $option){
-////        inputOption::destroy($option->id);
-////    }
-//});
-
-
-//Route::post('items/images','API\ImagesController@uploadImages');

@@ -16,11 +16,7 @@ class Store extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     * 'name' => 'required|unique:|max:191',
-     * @return array
-     */
+
     public function rules()
     {
         return [
