@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\API\ApiHome;
 use App\Http\Requests\BackEnd\Categories\Store;
+use App\Http\Requests\BackEnd\Categories\Update;
 use App\Http\Resources\Categories\CategoryFullDetaillResouce;
 use App\Http\Resources\Categories\CategoryResource;
 use App\Models\Category;
@@ -57,7 +58,7 @@ class CategoryApi extends ApiHome
         return $this->sendResponse(new CategoryResource($row), 'Created Successfully');
     }//end of store
 
-    public function update(Store $request, $id)
+    public function update(Update $request, $id)
     {
         $row = $this->model->find($id);
         if (!$row)

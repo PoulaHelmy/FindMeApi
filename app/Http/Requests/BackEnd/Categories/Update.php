@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\BackEnd\Profiles;
+namespace App\Http\Requests\BackEnd\Categories;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Store extends FormRequest
+class Update extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,13 +19,15 @@ class Store extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      * 'name' => 'required|unique:|max:191',
-
      * @return array
      */
     public function rules()
     {
         return [
-            //
+            'name' => ['min:3', 'max:191', 'string', 'unique:categories'],
+            'meta_keywords' => ['max:191'],
+            'meta_des' => ['max:191'],
         ];
     }
+
 }

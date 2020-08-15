@@ -25,7 +25,7 @@ class RequestChangeStatus extends Notification
 
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['database', 'mail'];
     }
 
     public function toMail($notifiable)

@@ -25,7 +25,7 @@ class CreateRequest extends Notification
 
     public function via($notifiable)
     {
-        return ['database', 'mail', 'broadcast'];
+        return ['database', 'mail'];
     }
 
     public function toMail($notifiable)

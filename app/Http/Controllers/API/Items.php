@@ -158,6 +158,10 @@ class Items extends ApiHome
         $cats = Category::all();
         $Aitems = [];
         foreach ($cats as $cat) {
+            //to avoid persons in automatic matching
+            if ($cat->id === 11) {
+                break;
+            }
             foreach ($cat->subcat as $subcat) {
                 $Lost_Items = Item::where('subcat_id', '=', $subcat->id)->
                 where('is_found', '=', 0)->get();
